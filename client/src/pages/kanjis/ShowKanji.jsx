@@ -34,7 +34,7 @@ const ShowKanji = () => {
   return (
     <>
       <div className=' d-flex justify-content-center text-center'>
-        <img src={kanjiImage} alt='image' />
+        <img src={kanjiImage} alt='kanjigif' />
       </div>
 
       <div className='row d-flex justify-content-center text-center'>
