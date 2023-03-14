@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap');
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+
+  
+
+
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+
+.kanji-card {
+  display: flex;
+  justify-content: center;
+}
+
+.kanji-card .card {
+  width: 150px;
+  height: 160px;
+}
+
+.kanji-card .card:hover {
+  cursor: pointer;
+  width: 170px;
+  height: 180px;
+}
+
+.kanji-card .card-title {
+  font-size: 74px !important;
+}
+
+.kanji-card .card-text {
+  font-size: 25px !important;
+}
+.logo{
+  transform: translateX(-25px);
+}
