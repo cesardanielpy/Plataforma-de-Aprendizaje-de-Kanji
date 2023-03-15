@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 const FormKanji = () => {
+    const navigate =useNavigate();
 
-    const [image, setImage] = useState();
+    
 
     const initialValues = {
         trazo: '',
@@ -39,6 +41,8 @@ const FormKanji = () => {
         
     })
 
+    const [image, setImage] = useState();
+
     const handleSubmit = async (values, actions) => {
         const data = { data: values, file: image };
         await axios.post(`http://localhost:8000/api/kanjiN5`, data, {
@@ -47,7 +51,10 @@ const FormKanji = () => {
             },
         })
             .then((response) => {
+                console.log(response)
+                navigate('/kanji/list')
             }).catch((e) => { console.log(e) })
+            
 
         actions.resetForm(initialValues)
     }

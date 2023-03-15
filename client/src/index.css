@@ -31,15 +31,15 @@ code {
 .kanji-card .card:hover {
   cursor: pointer;
   width: 170px;
-  height: 180px;
+  height: 170px;
 }
 
 .kanji-card .card-title {
-  font-size: 74px !important;
+  font-size: 70px !important;
 }
 
 .kanji-card .card-text {
-  font-size: 25px !important;
+  font-size: 20px !important;
 }
 .logo{
   transform: translateX(-25px);
