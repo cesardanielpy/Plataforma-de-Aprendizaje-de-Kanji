@@ -4,11 +4,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-
-  
-
-
-
 }
 
 code {
@@ -16,6 +11,13 @@ code {
     monospace;
 }
 
+.kanji-card .card:hover {
+  cursor: pointer;
+  width: 180px;
+  height: 180px;
+  background-color: #008080;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
 
 
 .kanji-card {
@@ -27,12 +29,11 @@ code {
   width: 150px;
   height: 160px;
 }
-
-.kanji-card .card:hover {
-  cursor: pointer;
-  width: 170px;
-  height: 170px;
+.kanji-card .card:hover .card-title, 
+.kanji-card .card:hover .card-text {
+  color: #ffffff;
 }
+
 
 .kanji-card .card-title {
   font-size: 70px !important;

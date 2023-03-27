@@ -22,14 +22,15 @@ const ListKanji = () => {
 
   return (
     <>
+    
       <div className='container mt-3'>
         <h2 className='text-center'>Kanjis Basicos Nivel 1</h2>
         <div className='row'>
           {kanjis.map((kanji, index) => <KanjiCard key={kanji._id}
             kanji={kanji} />)}
         </div>
-
       </div>
+
     </>
   )
 }
