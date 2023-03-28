@@ -4,24 +4,8 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-const FormKanji = () => {
+const FormKanji = ({initialValues, botonTexto}) => {
     const navigate =useNavigate();
-
-    
-
-    const initialValues = {
-        trazo: '',
-        significado: '',
-        lecturaKun: '',
-        lecturaOn: '',
-        palabra1: '',
-        hiragana1: '',
-        significado1: '',
-        palabra2: '',
-        hiragana2: '',
-        significado2: '',
-        url: ''
-    }
 
     const ErroresDeFormulario = Yup.object().shape({
         trazo: Yup.string()
@@ -63,12 +47,13 @@ const FormKanji = () => {
         setImage(event.target.files[0]);
     }
 
+
     return (
         <>
             <div className='row d-flex justify-content-center'>
                 <div className='col-lg-4 col-sm-12 col-md-6'>
-                    <h2 className='text-center mt-2'>Añadir un nuevo Kanji</h2>
                     <Formik
+                    enableReinitialize={true}
                         initialValues={initialValues}
                         onSubmit={handleSubmit}
                         validationSchema={ErroresDeFormulario}
@@ -105,7 +90,7 @@ const FormKanji = () => {
                             <Field name='significado2' className='form-control mt-2 mb-2' placeholder="Significado en español 2" />
                             <p>* Campo Obligatorio</p>
                             <br />
-                            <button className='btn btn-primary mt-5 d-grid gap-2 col-4 mx-auto' disabled={!(isValid && dirty)} type='submit' >Añadir Kanji</button>
+                            <button className='btn btn-primary mt-5 d-grid gap-2 col-4 mx-auto' disabled={!(isValid && dirty)} type='submit' >{botonTexto} Kanji</button>
                         </Form>
                         )}
                     </Formik>
