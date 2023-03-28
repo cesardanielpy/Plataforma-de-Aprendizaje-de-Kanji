@@ -9,6 +9,7 @@ import Introduccion from "../pages/contenidod/Introduccion";
 import RazonesDeEstudio from "../pages/contenidod/RazonesDeEstudio";
 import EditKanji from "../pages/kanjis/EditKanji";
 import ContactPage from "../Layout/ContactPage";
+import KanjiAdd from "../Layout/KanjiAdd";
 
 export default createBrowserRouter ([
     {
@@ -41,7 +42,7 @@ export default createBrowserRouter ([
                 element:<RazonesDeEstudio/>
             },
             {
-                path:'/kanji/edit',
+                path:'/kanji/:id/edit',
                 element:<EditKanji/>
             }
             ,
@@ -49,7 +50,11 @@ export default createBrowserRouter ([
                 path:'/kanji/contact',
                 element:<ContactPage/>
             }
-            
+            ,
+            {
+                path:'/kanji/add',
+                element:<KanjiAdd/>
+            }
             
             
             

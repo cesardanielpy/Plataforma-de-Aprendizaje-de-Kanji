@@ -71,7 +71,7 @@ const ShowKanji = () => {
             </div>
           </div>
           <Link className="btn btn-info mt-2 ms-2" to={'/kanji/contact'}>Reportar</Link>
-          <Link className="btn btn-warning mt-2 ms-2" to={'/kanji/edit'}>Editar</Link>
+          <Link className="btn btn-warning mt-2 ms-2" to={`/kanji/${kanji._id}/edit`}>Editar</Link>
           <Link className="btn btn-danger mt-2 ms-2" onClick={handleDelete} to="/kanji/list">Eliminar</Link>
         </div>
       </div>
