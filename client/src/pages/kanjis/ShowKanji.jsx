@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const ShowKanji = () => {
@@ -8,28 +8,37 @@ const ShowKanji = () => {
   const [kanji, setKanji] = useState({});
   const [kanjiImage, setKanjiImage] = useState();
 
-  const getkanji = async () => {
-    await axios.get(`http://localhost:8000/api/kanjiN5/${id}`)
-      .then((response) => {
+  useEffect(() => {
+    const getkanji = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/kanjiN5/${id}`);
         setKanji(response.data);
         getImage(response.data.url);
-        console.log("Datos del kanji: ",kanji)
-      })
-      .catch((e) => console.log(e));
-  }
-
-  const getImage = async (imageUrl) => {
-    await axios.get(`http://localhost:8000/api/kanjiN5/files/${imageUrl}`, {responseType: 'blob'})
-      .then((response) => {  
+        console.log("Datos del kanji: ", response.data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    const getImage = async (url) => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/kanjiN5/files/${url}`, { responseType: 'blob' });
         const imageUrl = URL.createObjectURL(response.data);
         setKanjiImage(imageUrl);
-      })
-      .catch((e) => console.log(e));
-  }
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
-  useEffect(() => {
     getkanji();
-  }, []);
+  }, [id]);
+
+    const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:8000/api/kanjiN5/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -61,6 +70,9 @@ const ShowKanji = () => {
               <h3 className="card-title">{kanji.significado2}</h3>
             </div>
           </div>
+          <Link className="btn btn-info mt-2 ms-2" to={'/kanji/contact'}>Reportar</Link>
+          <Link className="btn btn-warning mt-2 ms-2" to={'/kanji/edit'}>Editar</Link>
+          <Link className="btn btn-danger mt-2 ms-2" onClick={handleDelete} to="/kanji/list">Eliminar</Link>
         </div>
       </div>
     </>

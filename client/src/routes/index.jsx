@@ -7,6 +7,8 @@ import TextShpere from "../pages/TextShpere";
 import NotFound from "../pages/NotFound";
 import Introduccion from "../pages/contenidod/Introduccion";
 import RazonesDeEstudio from "../pages/contenidod/RazonesDeEstudio";
+import EditKanji from "../pages/kanjis/EditKanji";
+import ContactPage from "../Layout/ContactPage";
 
 export default createBrowserRouter ([
     {
@@ -37,7 +39,18 @@ export default createBrowserRouter ([
             {
                 path:'/kanji/intro/1',
                 element:<RazonesDeEstudio/>
+            },
+            {
+                path:'/kanji/edit',
+                element:<EditKanji/>
             }
+            ,
+            {
+                path:'/kanji/contact',
+                element:<ContactPage/>
+            }
+            
+            
             
             
             

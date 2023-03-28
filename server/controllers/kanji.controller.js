@@ -42,7 +42,7 @@ module.exports.find = async (request, response) => {
     }
 
 }
-module.exports.update = async (request, response) => {
+/*module.exports.update = async (request, response) => {
     try {
         const kanji = await Kanji.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true })
         response.json(kanji);
@@ -52,7 +52,7 @@ module.exports.update = async (request, response) => {
         response.json(200);
     }
 
-}
+}*/
 
 module.exports.getFile = (req,res) => {
     const filepath = "./uploads/" + req.params.filename;
@@ -62,3 +62,41 @@ module.exports.getFile = (req,res) => {
 
     res.sendFile(absolutePath);
 }
+module.exports.eliminarKanji = (req, res) => {
+    const kanjiId = req.params.id; // obtenemos el ID del kanji a eliminar
+    Kanji.findByIdAndDelete(kanjiId) // buscamos el kanji y lo eliminamos
+        .then(kanjiEliminado => {
+            if (!kanjiEliminado) { // si no se encontró el kanji, respondemos con un error 404
+                res.status(404);
+                res.json({ message: 'Kanji no encontrado' });
+            } else { // si se encontró el kanji, respondemos con un mensaje de éxito
+                res.status(200);
+                res.json({ message: 'Kanji eliminado correctamente' });
+            }
+        })
+        .catch(err => { // si ocurrió un error, respondemos con un error 500
+            res.status(500);
+            res.json(err);
+        })
+};
+
+module.exports.actualizarKanji = (req, res) => {
+    const kanjiId = req.params.id; // obtenemos el ID del kanji a actualizar
+    const data = req.body.data; // obtenemos los datos actualizados del kanji desde el cuerpo de la solicitud
+    const options = { new: true }; // configuramos las opciones para que Mongoose devuelva el kanji actualizado
+    
+    Kanji.findByIdAndUpdate(kanjiId, data, options) // buscamos el kanji y lo actualizamos
+        .then(kanjiActualizado => {
+            if (!kanjiActualizado) { // si no se encontró el kanji, respondemos con un error 404
+                res.status(404);
+                res.json({ message: 'Kanji no encontrado' });
+            } else { // si se encontró el kanji, respondemos con el kanji actualizado
+                res.status(200);
+                res.json(kanjiActualizado);
+            }
+        })
+        .catch(err => { // si ocurrió un error, respondemos con un error 500
+            res.status(500);
+            res.json(err);
+        })
+};
