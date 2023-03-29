@@ -1,7 +1,11 @@
-import React from 'react'
+
+import axios from 'axios';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import FormKanji from '../pages/kanjis/FormKanji'
 
 const KanjiAdd = () => {
+    const navigate =useNavigate();
     const initialValues = {
         trazo: '',
         significado: '',
@@ -15,6 +19,24 @@ const KanjiAdd = () => {
         significado2: '',
         url: ''
     }
+    const [image, setImage] = useState();
+
+    const crearKanji = async (values) => {
+        
+        const data = { data: values, file: image };
+        await axios.post(`http://localhost:8000/api/kanjiN5`, data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+            .then((response) => {
+                console.log(response)
+                navigate('/kanji/list')
+            }).catch((e) => { console.log(e) })
+            
+
+    }
+
     return (
         <>
             <h2 className='text-center mt-2'>Agregar Kanji</h2>
@@ -23,8 +45,10 @@ const KanjiAdd = () => {
                 <div className='col-lg-12 col-sm-12 col-md-6'>
                     <FormKanji 
                     initialValues={initialValues}
-                    botonTexto="Agregar Kanji"
-
+                    botonTexto="Agregar"
+                    funcAction={crearKanji}
+                    setImage={setImage}
+                    
                     />
                 </div>
             </div>
