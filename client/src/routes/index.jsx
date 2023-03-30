@@ -5,11 +5,12 @@ import ListKanji from "../pages/kanjis/ListKanji";
 import ShowKanji from "../pages/kanjis/ShowKanji";
 import TextShpere from "../pages/TextShpere";
 import NotFound from "../pages/NotFound";
-import Introduccion from "../pages/contenidod/Introduccion";
-import RazonesDeEstudio from "../pages/contenidod/RazonesDeEstudio";
 import EditKanji from "../pages/kanjis/EditKanji";
 import ContactPage from "../Layout/ContactPage";
 import KanjiAdd from "../Layout/KanjiAdd";
+import LoginPage from "../Auth/LoginPage";
+import RegisterPage from "../Auth/RegisterPage";
+
 
 export default createBrowserRouter ([
     {
@@ -32,18 +33,12 @@ export default createBrowserRouter ([
             {
                 path:'/kanji/list',
                 element:<ListKanji/>
-            },
-            {
-                path:'/kanji/intro',
-                element:<Introduccion/>
-            },
-            {
-                path:'/kanji/intro/1',
-                element:<RazonesDeEstudio/>
-            },
+            }
+            ,
             {
                 path:'/kanji/:id/edit',
-                element:<EditKanji/>
+                element:
+                        <EditKanji/>
             }
             ,
             {
@@ -54,8 +49,15 @@ export default createBrowserRouter ([
             {
                 path:'/kanji/add',
                 element:<KanjiAdd/>
+            },
+            {
+                path:'/kanji/login',
+                element:<LoginPage/>
+            },
+            {
+                path:'/kanji/register',
+                element:<RegisterPage/>
             }
-            
             
             
             

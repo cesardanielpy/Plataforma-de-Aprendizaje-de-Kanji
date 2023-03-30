@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, {  } from 'react'
 import { Formik, Form, Field } from 'formik';
-import axios from 'axios';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+
 
 
 const ErroresDeFormulario = Yup.object().shape({
@@ -39,7 +38,7 @@ const FormKanji = ({ initialValues, botonTexto, funcAction, setImage }) => {
     return (
         <>
             <div className='row d-flex justify-content-center'>
-                <div className='col-lg-4 col-sm-12 col-md-6'>
+                <div className='col-lg-4 col-sm-12 col-md-6 mb-3'>
                     <Formik
                         enableReinitialize={true}
                         initialValues={initialValues}

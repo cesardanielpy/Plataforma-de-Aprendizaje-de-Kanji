@@ -52,7 +52,7 @@ const TextShpere = () => {
           <br />
           </h1>
           <h3>¡Ha dado el primer paso para aprender Kanji japonés! ¡Felicidades!</h3>
-          <Link className="btn btn-info mt-3" to={'/kanji/intro'}>Comenzar</Link>
+          <Link className="btn btn-info mt-3" to={'/kanji/list'}>Comenzar</Link>
        
       </div>
 

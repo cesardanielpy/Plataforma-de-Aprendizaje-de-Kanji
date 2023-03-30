@@ -1,7 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const NavBar = () => {
+
+    const {state} = useLocation();
+    const navigate = useNavigate();
+
+
+    console.log(state);
+
+    const onLogout = () => {
+        navigate('/kanji/login',{
+            replace: true,
+        })
+    }
+
+
+
+
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar bg-primary" data-bs-theme="dark">
@@ -14,6 +31,23 @@ const NavBar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto">
+                                {
+                                    state?.logged ? (
+                                        <li className="nav-item">
+                                <span className='badge badge-primary mt-1'><h6>{state?.name}</h6></span>
+                            <button className="btn btn-primary" onClick={onLogout} aria-current="page"><i className="fa-solid fa-right-from-bracket"></i> Cerrar Sesion</button>
+                            </li>
+                                    ) : (
+                                        <>
+                                        <li className="nav-item">
+                                        <Link className="nav-link active" aria-current="page" to="/kanji/login"><i className="fa-solid fa-user-ninja"></i> Iniciar Sesion</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                        <Link className="nav-link active" aria-current="page" to="/kanji/register"><i className="fa-solid fa-id-card"></i> Registrarse</Link>
+                                        </li>
+                                        </>
+                                    )}
+                            
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/"><i className="fa-solid fa-house"></i> Home</Link>
                             </li>

@@ -95,4 +95,4 @@ module.exports.actualizarKanji = async (req, res) => {
         res.json(error)
     }
 
-};
+}
