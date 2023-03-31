@@ -5,8 +5,11 @@ const jwt = require("jsonwebtoken");
 
 
 module.exports.createUsuario = async (req, res) => {
+    const {email,password,name} = req.body
     try {
-        const usuario = new Usuario(req.body);
+        // Encriptar la contraseña
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const usuario = new Usuario({email, password: hashedPassword, name});
         await usuario.save();
         res.json({ msg: "Usuario Registrado", usuario });
     } catch (error) {
@@ -37,7 +40,7 @@ module.exports.login = async (req, res) => {
                 httpOnly: true
             })
 
-        res.json({ msg: "Logeado Correctamente" })
+        res.json({ msg: "Logeado Correctamente", usuario })
         }
 
             

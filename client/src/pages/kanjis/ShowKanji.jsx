@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { AuthContext } from '../../context/AuthContext'
 
 const ShowKanji = () => {
+  const { isAuthenticated, logout } = useContext(AuthContext)
+
 
   const { id } = useParams();
   const [kanji, setKanji] = useState({});
@@ -32,7 +35,7 @@ const ShowKanji = () => {
     getkanji();
   }, [id]);
 
-    const handleDelete = async () => {
+  const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:8000/api/kanjiN5/${id}`);
     } catch (error) {
@@ -70,9 +73,17 @@ const ShowKanji = () => {
               <h3 className="card-title">{kanji.significado2}</h3>
             </div>
           </div>
-          <Link className="btn btn-info mt-2 ms-2" to={'/kanji/contact'}>Reportar</Link>
-          <Link className="btn btn-warning mt-2 ms-2" to={`/kanji/${kanji._id}/edit`}>Editar</Link>
-          <Link className="btn btn-danger mt-2 ms-2" onClick={handleDelete} to="/kanji/list">Eliminar</Link>
+          {
+            isAuthenticated?.logged ? (
+              <>
+                <Link className="btn btn-warning mt-2 ms-2" to={`/kanji/${kanji._id}/edit`}>Editar</Link>
+                <Link className="btn btn-danger mt-2 ms-2" onClick={handleDelete} to="/kanji/list">Eliminar</Link>
+              </>
+            ) : (
+              <>
+                <Link className="btn btn-info mt-2 ms-2" to={'/kanji/contact'}>Reportar</Link>
+              </>
+            )}
         </div>
       </div>
     </>

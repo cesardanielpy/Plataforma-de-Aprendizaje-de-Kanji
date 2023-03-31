@@ -1,12 +1,47 @@
-import React, { createContext, useState } from 'react';
+import { useState } from 'react';
+import { AuthContext } from './AuthContext';
 
-export const AuthContext = createContext({});
+const iniciar = () => {
+  const user = JSON.parse(localStorage.getItem('user'))
+  return {
+      logged: !!user,
+      user: user,
+  }
+}
 
-const AuthContextProvider = props => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+export const AuthProvider = ({ children }) => {
 
-  const value = { isAuthenticated, setIsAuthenticated };
-  return <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>;
-};
+  const [isAuthenticated, setIsAuthenticated] = useState(iniciar);
 
-export default AuthContextProvider;
+  const login = async (name = '') => {
+    const user = {
+        name
+    }
+    localStorage.setItem('user', JSON.stringify(user));
+    updateAuth();
+  }
+
+  const logout = () => {
+    localStorage.removeItem('user');
+    setIsAuthenticated({
+      logged: false
+    })
+    updateAuth();
+  }
+
+  const updateAuth = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    setIsAuthenticated({
+      logged: !!user,
+      user: user,
+    })
+  }
+
+  return (
+    <AuthContext.Provider value={{
+      isAuthenticated, login, logout
+    }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}

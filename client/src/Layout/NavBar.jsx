@@ -1,15 +1,15 @@
-import React from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext';
+
 
 const NavBar = () => {
-
-    const {state} = useLocation();
     const navigate = useNavigate();
+    const { isAuthenticated, logout } = useContext(AuthContext)
 
-
-    console.log(state);
 
     const onLogout = () => {
+        logout()
         navigate('/kanji/login',{
             replace: true,
         })
@@ -17,7 +17,7 @@ const NavBar = () => {
 
 
 
-
+<></>
 
     return (
         <div>
@@ -32,18 +32,18 @@ const NavBar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto">
                                 {
-                                    state?.logged ? (
+                                    isAuthenticated?.logged ? (
                                         <li className="nav-item">
-                                <span className='badge badge-primary mt-1'><h6>{state?.name}</h6></span>
+                                <span className='badge badge-primary mt-1'><h6>{isAuthenticated?.user.name}</h6></span>
                             <button className="btn btn-primary" onClick={onLogout} aria-current="page"><i className="fa-solid fa-right-from-bracket"></i> Cerrar Sesion</button>
                             </li>
                                     ) : (
                                         <>
                                         <li className="nav-item">
-                                        <Link className="nav-link active" aria-current="page" to="/kanji/login"><i className="fa-solid fa-user-ninja"></i> Iniciar Sesion</Link>
+                                        <Link className="nav-link active" aria-current="page" to="kanji/login"><i className="fa-solid fa-user-ninja"></i> Iniciar Sesion</Link>
                                         </li>
                                         <li className="nav-item">
-                                        <Link className="nav-link active" aria-current="page" to="/kanji/register"><i className="fa-solid fa-id-card"></i> Registrarse</Link>
+                                        <Link className="nav-link active" aria-current="page" to="kanji/register"><i className="fa-solid fa-id-card"></i> Registrarse</Link>
                                         </li>
                                         </>
                                     )}

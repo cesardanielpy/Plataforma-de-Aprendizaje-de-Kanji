@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import FormKanji from './FormKanji';
-import { AuthContext } from '../../Auth/LoginPage';
 
 const EditKanji = () => {
   const { isAuthenticated } = useContext(AuthContext);
