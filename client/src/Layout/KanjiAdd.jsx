@@ -1,8 +1,9 @@
 
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import FormKanji from '../pages/kanjis/FormKanji'
+
 
 const KanjiAdd = () => {
     const navigate =useNavigate();

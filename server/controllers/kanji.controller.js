@@ -42,17 +42,6 @@ module.exports.find = async (request, response) => {
     }
 
 }
-/*module.exports.update = async (request, response) => {
-    try {
-        const kanji = await Kanji.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true })
-        response.json(kanji);
-        response.status(200);
-    } catch (error) {
-        response.status(400);
-        response.json(200);
-    }
-
-}*/
 
 module.exports.getFile = (req,res) => {
     const filepath = "./uploads/" + req.params.filename;

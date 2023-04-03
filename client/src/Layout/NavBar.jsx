@@ -57,7 +57,7 @@ const NavBar = () => {
                                 </Link>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/kanji/intro">Introduccion</Link></li>
-                                    <li><Link className="dropdown-item" to="/kanji/intro/1">Razones Para Estudiar Japones</Link></li>
+                                    <li><Link className="dropdown-item" to="/kanji/intro/1">Instrucciones</Link></li>
                                     <li><Link className="dropdown-item" to="/kanji/contact">Contacto</Link></li>
                                     <li><Link className="dropdown-item" to="/kanji/list">Lista de Kanji</Link></li>
                                     <li><Link className="dropdown-item" to="/kanji/add">Formulario de Kanji</Link></li>

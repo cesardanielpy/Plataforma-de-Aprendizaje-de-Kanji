@@ -1,6 +1,8 @@
-import React, {  } from 'react'
+import React, { } from 'react'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -23,11 +25,18 @@ const ErroresDeFormulario = Yup.object().shape({
 })
 
 const FormKanji = ({ initialValues, botonTexto, funcAction, setImage }) => {
+    const navigate = useNavigate();
 
 
     const handleSubmit = (values, actions) => {
         funcAction(values);
-    }
+        Swal.fire({
+            icon: 'success',
+            title: 'Kanji agregado correctamente.'
+        }).then(() => {
+            navigate('/kanji/list');
+        });
+    };
 
 
     const handleImageChange = (event) => {

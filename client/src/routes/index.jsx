@@ -10,6 +10,7 @@ import ContactPage from "../Layout/ContactPage";
 import KanjiAdd from "../Layout/KanjiAdd";
 import LoginPage from "../Auth/LoginPage";
 import RegisterPage from "../Auth/RegisterPage";
+import Instrucciones from "../Layout/Instrucciones";
 
 
 export default createBrowserRouter ([
@@ -21,10 +22,17 @@ export default createBrowserRouter ([
             {
                 index:true,
                 element:<TextShpere/>
+            }
+            ,
+            {
+                path:'/kanji/instrucciones',
+                element:
+                <Instrucciones/>
             },
             {
                 path:'/kanji/:id',
-                element:<ShowKanji/>
+                element:
+                <ShowKanji/>
             },
             {
                 path:'/kanji/form',
